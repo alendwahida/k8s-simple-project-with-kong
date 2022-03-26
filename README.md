@@ -1,7 +1,8 @@
 # k8s-simple-project-with-kong
-k8s-simple-project-with-kong
+Tutorial
 
-Example directory structure project kubernetes with kong and namespace
+- Example directory structure project kubernetes with kong and namespacing
+- Example use configmap & secret
 
 ### 1. Install Kong Gateway (OSS) on Kubernetes native
    ```bash
