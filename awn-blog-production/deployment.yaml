@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blog-deployment-production
-  namespace: macross-production
+  namespace: production
 spec:
   selector:
     matchLabels:
@@ -10,7 +10,7 @@ spec:
   replicas: 1
   template:
     metadata:
-      namespace: blog-production
+      namespace: production
       labels:
         app: blog-production
     spec:
