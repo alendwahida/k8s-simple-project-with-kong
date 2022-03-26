@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: blog-service-production
-  namespace: macross-production
+  namespace: production
 spec:
   selector:
     app: blog-production
