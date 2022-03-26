@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pesbuk-service-staging
+  namespace: staging
+spec:
+  selector:
+    app: pesbuk-staging
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

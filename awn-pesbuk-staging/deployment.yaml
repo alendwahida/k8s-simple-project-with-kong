@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pesbuk-deployment-staging
+  namespace: staging
+spec:
+  selector:
+    matchLabels:
+      app: pesbuk-staging
+  replicas: 1
+  template:
+    metadata:
+      namespace: staging
+      labels:
+        app: pesbuk-staging
+    spec:
+      volumes:
+      - name: config-secret
+        configMap:
+          name: pesbuk-configmap-staging
+
+      containers:
+      - name: pesbuk-staging
+        image: 128150454185.dkr.ecr.us-east-1.amazonaws.com/awn-pesbuk:staging
+        resources: {}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-secret
+          mountPath: "/var/www/html/config.php"
+          subPath: "config.php"
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: pesbuk-secret-staging
+              key: DB_HOST
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: pesbuk-secret-staging
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: pesbuk-secret-staging
+              key: DB_PASS
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: pesbuk-secret-staging
+              key: DB_NAME
