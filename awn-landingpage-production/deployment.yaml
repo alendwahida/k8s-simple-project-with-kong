@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landingpage-deployment-production
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: landingpage-production
+  replicas: 1
+  template:
+    metadata:
+      namespace: production
+      labels:
+        app: landingpage-production
+    spec:
+      containers:
+      - name: landingpage-production
+        image: 128150454185.dkr.ecr.us-east-1.amazonaws.com/awn-landing-page:production
+        resources: {}
+        ports:
+        - containerPort: 80

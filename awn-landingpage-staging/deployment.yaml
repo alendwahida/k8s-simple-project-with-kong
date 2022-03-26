@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landingpage-deployment-staging
+  namespace: staging
+spec:
+  selector:
+    matchLabels:
+      app: landingpage-staging
+  replicas: 1
+  template:
+    metadata:
+      namespace: staging
+      labels:
+        app: landingpage-staging
+    spec:
+      containers:
+      - name: landingpage-staging
+        image: 128150454185.dkr.ecr.us-east-1.amazonaws.com/awn-landing-page:staging
+        resources: {}
+        ports:
+        - containerPort: 80
