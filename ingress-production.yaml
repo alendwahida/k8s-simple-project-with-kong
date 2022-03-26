@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress-production
+  namespace: macross-production
+spec:
+  ingressClassName: kong
+  rules:
+  - host: alend.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: landingpage-service-production
+            port:
+              number: 80
+  - host: pesbuk.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: pesbuk-service-production
+            port:
+              number: 80
+  - host: blog.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: blog-service-production
+            port:
+              number: 80

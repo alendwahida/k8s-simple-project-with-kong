@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress-staging
+  namespace: macross-staging
+spec:
+  ingressClassName: kong
+  rules:
+  - host: staging-alend.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: landingpage-service-staging
+            port:
+              number: 80
+  - host: staging-pesbuk.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: pesbuk-service-staging
+            port:
+              number: 80
+  - host: staging-blog.awn.my.id
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: blog-service-staging
+            port:
+              number: 80
