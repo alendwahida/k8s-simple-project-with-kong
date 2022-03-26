@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-deployment-production
+  namespace: macross-production
+spec:
+  selector:
+    matchLabels:
+      app: blog-production
+  replicas: 1
+  template:
+    metadata:
+      namespace: blog-production
+      labels:
+        app: blog-production
+    spec:
+      volumes:
+      - name: config-secret
+        configMap:
+          name: blog-configmap-production
+
+      containers:
+      - name: blog-production
+        image: 128150454185.dkr.ecr.us-east-1.amazonaws.com/awn-blog:production
+        resources: {}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-secret
+          mountPath: "/var/www/html/wp-config.php"
+          subPath: "wp-config.php"
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: blog-secret-production
+              key: DB_HOST
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: blog-secret-production
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: blog-secret-production
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: blog-secret-production
+              key: DB_NAME

@@ -1,0 +1,28 @@
+apiVersion: v1                                                                 
+kind: ConfigMap                                                                
+metadata:                                                                      
+  name: blog-configmap-production                                            
+  namespace: macross-production                                                
+data:                                                                          
+  wp-config.php: |                                                                
+    <?php
+    define( 'DB_NAME', getenv('DB_NAME') );
+    define( 'DB_USER', getenv('DB_USER') );
+    define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
+    define( 'DB_HOST', getenv('DB_HOST') );
+    define( 'DB_CHARSET', 'utf8mb4' );
+    define( 'DB_COLLATE', '' );
+    define( 'AUTH_KEY', 'yHpy6HsFBf}i0Ylk{vd[LJ1v$&|f/ep;Oy}_`ZBlF0}81Nv-TQ6PbVEgAPtC@Q:-' );
+    define( 'SECURE_AUTH_KEY', 'n,`APm&/}28:rbQyqX;v& 1qDf5/g54P2c;=7H~|xc535{ fM%OiAx*VJ^1H%9sF' );
+    define( 'LOGGED_IN_KEY', 'Hwf+v!<ESRy6BwO5r(Tm[6BF{a(i +;?jMX%y!Qs$in-S5ml3?,.JCw32biwYCgH' );
+    define( 'NONCE_KEY', 'xRvQWur7uZ,aJ^5leD^`Ce3@>g2(D]?z*KmD|i)qw,.`>XN`ia@ojL$E~!9,<R6&' );
+    define( 'AUTH_SALT', '9hlyv@#4Wf<t2kBYx$ac*]}V]i24l$vD<36=xWC2WJ1H}@I`^>bf*~j$pL(z6qV3' );
+    define( 'SECURE_AUTH_SALT', 'L)Y,sX @E sw%Q!n6|N@IuZ(zGV%@i;Ipf&SMJL5>l9e;j0;/EPdm zlkkqYc4k6' );
+    define( 'LOGGED_IN_SALT', 'uYb&U|g/~`VI|(Xmw:[3`V?,_Fo3<?tkXQo)D0!G;*^_^2;QbM@qfPTkdm+sGk&2' );
+    define( 'NONCE_SALT', '*vzYm*va6)~=v;()VI|Q#Z`*~.sMRAw,$#Qg$(3dLyuazDUexAZ7~+M8c:3RplX@' );
+    $table_prefix = 'wp_';
+    define( 'WP_DEBUG', false );
+    if ( ! defined( 'ABSPATH' ) ) {
+           define( 'ABSPATH', __DIR__ . '/' );
+    }
+    require_once ABSPATH . 'wp-settings.php';
