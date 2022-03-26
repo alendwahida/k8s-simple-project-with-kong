@@ -1,7 +1,7 @@
 # k8s-simple-project-with-kong
 k8s-simple-project-with-kong
 
-Simple pro
+Example project kubernetes with kong and namespace
 
 ### 1. Install Kong Gateway (OSS) on Kubernetes native
    ```bash
